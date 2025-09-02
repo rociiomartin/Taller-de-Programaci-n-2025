@@ -110,28 +110,33 @@ end;
 procedure ModuloB(v: vectorListas);
 var
   i: integer;
+  l:lista;
 begin
   for i := 1 to DF do
   begin
     writeln('Rubro ', i, ':');
-    while (v[i] <> nil) do
+    l:=v[i];
+    if (l = nil) then writeln('(sin productos)')
+    else 
     begin
-        writeln('  Codigo: ', v[i]^.datos.cod, '  Precio: ', v[i]^.datos.precio:0:2);
-        v[i]:= v[i]^.sig;
+        while (l <> nil) do
+        begin
+            writeln('  Codigo: ', l^.datos.cod, '  Precio: ', l^.datos.precio:0:2);
+            l:= l^.sig;
+        end;
     end;
-    if (v[i] = nil) then writeln('(sin productos)');
   end;
 end;
 
 
-procedure ModuloC(v:VectorListas; var vec:VectorRubro3; var dimL:integer);
+procedure ModuloC(l:lista; var vec:VectorRubro3; var dimL:integer);
 begin
     dimL:=0;
-    while ( v[3] <> nil) and (dimL < DFR)do
+    while ( l <> nil) and (dimL < DFR)do
     begin
         dimL:=dimL+1;
-        vec[dimL]:= v[3]^.datos;
-        v[3]:=v[3]^.sig;
+        vec[dimL]:= l^.datos;
+        l:=l^.sig;
     end;
 end;
 
@@ -182,7 +187,7 @@ var
 begin
     ModuloA(v);
     ModuloB(v);
-    ModuloC(v,vec,dimL);
+    ModuloC(v[3],vec,dimL);
     ModuloD(vec,dimL);
     ModuloE(vec,dimL);
     ModuloF(vec,dimL,promedio);
