@@ -107,15 +107,17 @@ procedure ModuloB(v:VectorListas; var vec:VectorGeneros);
 var
     aux:auxiliar;
     i:rango;
+    l:lista;
 begin
     for i:=1 to DF do
     begin
         aux.puntaje:=-1;
         {aux.codP:= -1; no es necesario inicializarlo}
-        while ( v[i] <> nil ) do
+        l:=v[i];
+        while ( l <> nil ) do
         begin
-            Maximo(aux, v[i]^.datos.puntaje, v[i]^.datos.codP);
-            v[i]:=v[i]^.sig;
+            Maximo(aux, l^.datos.puntaje, l^.datos.codP);
+            l:=l^.sig;
         end;
         vec[i]:=aux;
     end;
