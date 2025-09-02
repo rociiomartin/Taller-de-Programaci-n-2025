@@ -11,7 +11,7 @@ c. Ordene el vector aplicando el método de selección, por código de identific
 }
 program ejercicio2;
 const   
-    DF=4;
+    DF=300;
     FIN = -1;
 type
     rango= 1..DF;
